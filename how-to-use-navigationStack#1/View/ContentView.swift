@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var path = NavigationPath()
+    @StateObject private var cartManager = ShoppingCartManager()
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             List {
                 Section("Food") {
                     MenuItemsData(menuItems: foods)
@@ -17,15 +19,35 @@ struct ContentView: View {
                 Section("Drinks") {
                     MenuItemsData(menuItems: drinks)
                 }
+                Section("Dessert") {
+                    MenuItemsData(menuItems: desserts)
+                }
             }
             .navigationTitle("Menu")
             .navigationDestination(for: Food.self) { food in
-                FoodDetailView(food: food)
+                FoodDetailView(food: food, onAppear: {
+                        print("Path Count on Appear --->\(path.count)")
+//                    print("Path description --->\(path.description)")
+                },onDisAppear: {
+                    print("Path Count onDisAppear --->\(path.count)")
+//                    print("Path description --->\(path.description)")
+                })
             }
             .navigationDestination(for: Drink.self) { drink in
                 DrinkDetailView(drink: drink)
             }
+            .navigationDestination(for: Dessert.self) { dessert in
+                DessertDetailView(dessert: dessert)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    CartButton(count: cartManager.items.count, didTap: {
+                        // push to cartView Screen
+                    })
+                }
+            }
         }
+        .environmentObject(cartManager)
     }
 }
 

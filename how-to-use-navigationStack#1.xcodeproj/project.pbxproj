@@ -15,6 +15,10 @@
 		07732F552BAF0B9D00076540 /* MenuItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07732F542BAF0B9D00076540 /* MenuItemView.swift */; };
 		07732F572BAF0CBA00076540 /* FoodDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07732F562BAF0CBA00076540 /* FoodDetailView.swift */; };
 		07732F592BAF184E00076540 /* DrinkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07732F582BAF184E00076540 /* DrinkDetailView.swift */; };
+		07732F5B2BAF238300076540 /* DessertDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07732F5A2BAF238300076540 /* DessertDetailView.swift */; };
+		07732F5F2BAF6E4F00076540 /* ShoppingCartManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07732F5E2BAF6E4F00076540 /* ShoppingCartManager.swift */; };
+		07732F622BAF807500076540 /* CartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07732F612BAF807500076540 /* CartButton.swift */; };
+		07732F642BAF86A500076540 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07732F632BAF86A500076540 /* CartView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,10 @@
 		07732F542BAF0B9D00076540 /* MenuItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemView.swift; sourceTree = "<group>"; };
 		07732F562BAF0CBA00076540 /* FoodDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailView.swift; sourceTree = "<group>"; };
 		07732F582BAF184E00076540 /* DrinkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrinkDetailView.swift; sourceTree = "<group>"; };
+		07732F5A2BAF238300076540 /* DessertDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailView.swift; sourceTree = "<group>"; };
+		07732F5E2BAF6E4F00076540 /* ShoppingCartManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartManager.swift; sourceTree = "<group>"; };
+		07732F612BAF807500076540 /* CartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartButton.swift; sourceTree = "<group>"; };
+		07732F632BAF86A500076540 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,7 @@
 		07732F402BAEF00F00076540 /* how-to-use-navigationStack#1 */ = {
 			isa = PBXGroup;
 			children = (
+				07732F5C2BAF6E2800076540 /* Cart */,
 				07732F522BAF0B7F00076540 /* View */,
 				07732F4F2BAF0ACE00076540 /* Model */,
 				07732F412BAEF00F00076540 /* how_to_use_navigationStack_1App.swift */,
@@ -99,8 +108,35 @@
 				07732F542BAF0B9D00076540 /* MenuItemView.swift */,
 				07732F562BAF0CBA00076540 /* FoodDetailView.swift */,
 				07732F582BAF184E00076540 /* DrinkDetailView.swift */,
+				07732F5A2BAF238300076540 /* DessertDetailView.swift */,
 			);
 			path = subView;
+			sourceTree = "<group>";
+		};
+		07732F5C2BAF6E2800076540 /* Cart */ = {
+			isa = PBXGroup;
+			children = (
+				07732F602BAF805D00076540 /* View */,
+				07732F5D2BAF6E3200076540 /* Manager */,
+			);
+			path = Cart;
+			sourceTree = "<group>";
+		};
+		07732F5D2BAF6E3200076540 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				07732F5E2BAF6E4F00076540 /* ShoppingCartManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		07732F602BAF805D00076540 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				07732F612BAF807500076540 /* CartButton.swift */,
+				07732F632BAF86A500076540 /* CartView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,9 +209,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07732F642BAF86A500076540 /* CartView.swift in Sources */,
 				07732F552BAF0B9D00076540 /* MenuItemView.swift in Sources */,
+				07732F5F2BAF6E4F00076540 /* ShoppingCartManager.swift in Sources */,
 				07732F512BAF0AE900076540 /* MenuItem.swift in Sources */,
+				07732F5B2BAF238300076540 /* DessertDetailView.swift in Sources */,
 				07732F442BAEF00F00076540 /* ContentView.swift in Sources */,
+				07732F622BAF807500076540 /* CartButton.swift in Sources */,
 				07732F422BAEF00F00076540 /* how_to_use_navigationStack_1App.swift in Sources */,
 				07732F592BAF184E00076540 /* DrinkDetailView.swift in Sources */,
 				07732F572BAF0CBA00076540 /* FoodDetailView.swift in Sources */,

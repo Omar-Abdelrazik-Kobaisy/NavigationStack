@@ -1,5 +1,5 @@
 //
-//  DrinkDetailView.swift
+//  DessertDetailView.swift
 //  how-to-use-navigationStack#1
 //
 //  Created by Omar on 23/03/2024.
@@ -8,35 +8,35 @@
 
 import SwiftUI
 
-struct DrinkDetailView: View {
+struct DessertDetailView: View {
     @EnvironmentObject private var cartManager: ShoppingCartManager
-    let drink: Drink
+    let dessert: Dessert
     
     var body: some View {
         List {
             
             Section {
-                LabeledContent("Icon", value: drink.name)
-                LabeledContent("Name", value: drink.title)
+                LabeledContent("Icon", value: dessert.name)
+                LabeledContent("Name", value: dessert.title)
                 LabeledContent {
-                    Text(drink.price,
+                    Text(dessert.price,
                          format: .currency(code: Locale.current.currency?.identifier ?? ""))
                 } label: {
                     Text("Price")
                 }
-                LabeledContent("Fizzy?", value: drink.isFizzy ? "✅" : "❌")
+                LabeledContent("Cold?", value: dessert.isCold ? "✅" : "❌")
             }
             
             Section {
                 Button {
-                    cartManager.add(drink)
+                    cartManager.add(dessert)
                 } label: {
                     Label("Add to Cart", systemImage: "cart.fill")
                 }
 
             }
             Section("Description") {
-                Text(drink.description)
+                Text(dessert.description)
             }
 
         }
@@ -44,8 +44,8 @@ struct DrinkDetailView: View {
     }
 }
 
-struct DrinkDetailView_Previews: PreviewProvider {
+struct DessertDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DrinkDetailView(drink: drinks[0])
+        DessertDetailView(dessert: desserts[0])
     }
 }
