@@ -9,9 +9,8 @@ import SwiftUI
 
 struct FoodDetailView: View {
     @EnvironmentObject private var cartManager: ShoppingCartManager
+    @EnvironmentObject private var routerManager: NavigationRouter
     let food: Food
-    var onAppear : () -> ()
-    var onDisAppear: () -> ()
     var body: some View {
         List {
             Section {
@@ -24,6 +23,7 @@ struct FoodDetailView: View {
             Section {
                 Button {
                     cartManager.add(food)
+                    routerManager.reset()
                 } label: {
                     Label("Add to Cart", systemImage: "cart.fill")
                 }
@@ -34,21 +34,11 @@ struct FoodDetailView: View {
             }
         }
         .navigationTitle("Item")
-        .onAppear {
-            onAppear()
-        }
-        .onDisappear{
-            onDisAppear()
-        }
     }
 }
 
 struct FoodDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodDetailView(food: foods.first!, onAppear: {
-            
-        },onDisAppear: {
-            
-        })
+        FoodDetailView(food: foods.first!)
     }
 }

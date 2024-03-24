@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var path = NavigationPath()
+    @StateObject private var routerManager = NavigationRouter()
     @StateObject private var cartManager = ShoppingCartManager()
     var body: some View {
-        NavigationStack(path: $path) {
+        NavigationStack(path: $routerManager.routes) {
             List {
                 Section("Food") {
                     MenuItemsData(menuItems: foods)
@@ -24,30 +24,24 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Menu")
-            .navigationDestination(for: Food.self) { food in
-                FoodDetailView(food: food, onAppear: {
-                        print("Path Count on Appear --->\(path.count)")
-//                    print("Path description --->\(path.description)")
-                },onDisAppear: {
-                    print("Path Count onDisAppear --->\(path.count)")
-//                    print("Path description --->\(path.description)")
-                })
-            }
-            .navigationDestination(for: Drink.self) { drink in
-                DrinkDetailView(drink: drink)
-            }
-            .navigationDestination(for: Dessert.self) { dessert in
-                DessertDetailView(dessert: dessert)
-            }
+            .navigationDestination(for: Route.self) {$0}
+//            .navigationDestination(for: Drink.self) { drink in
+//                DrinkDetailView(drink: drink)
+//            }
+//            .navigationDestination(for: Dessert.self) { dessert in
+//                DessertDetailView(dessert: dessert)
+//            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     CartButton(count: cartManager.items.count, didTap: {
                         // push to cartView Screen
+                        routerManager.push(to: .cart)
                     })
                 }
             }
         }
         .environmentObject(cartManager)
+        .environmentObject(routerManager)
     }
 }
 
@@ -55,7 +49,7 @@ struct MenuItemsData<T>: View where T: MenuItem{
     let menuItems: [T]
     var body: some View{
         ForEach(menuItems) { item in
-            NavigationLink(value: item) {
+            NavigationLink(value: Route.menuItem(item: item)) {
                 MenuItemView(item: item)
             }
         }

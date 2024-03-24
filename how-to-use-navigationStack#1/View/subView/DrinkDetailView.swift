@@ -10,6 +10,7 @@ import SwiftUI
 
 struct DrinkDetailView: View {
     @EnvironmentObject private var cartManager: ShoppingCartManager
+    @EnvironmentObject private var routerManager: NavigationRouter
     let drink: Drink
     
     var body: some View {
@@ -30,6 +31,7 @@ struct DrinkDetailView: View {
             Section {
                 Button {
                     cartManager.add(drink)
+                    routerManager.reset()
                 } label: {
                     Label("Add to Cart", systemImage: "cart.fill")
                 }

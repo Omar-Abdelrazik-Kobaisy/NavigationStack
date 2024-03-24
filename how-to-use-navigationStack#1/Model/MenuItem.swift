@@ -8,6 +8,7 @@
 import Foundation
 
 protocol MenuItem:  Identifiable, Hashable{
+    var id: String {get}
     var name: String {get}
     var title: String {get}
     var description: String {get}
