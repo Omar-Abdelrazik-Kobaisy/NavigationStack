@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var routerManager = NavigationRouter()
+    @EnvironmentObject private var routerManager:NavigationRouter
     @StateObject private var cartManager = ShoppingCartManager()
     var body: some View {
         NavigationStack(path: $routerManager.routes) {
@@ -25,12 +25,6 @@ struct ContentView: View {
             }
             .navigationTitle("Menu")
             .navigationDestination(for: Route.self) {$0}
-//            .navigationDestination(for: Drink.self) { drink in
-//                DrinkDetailView(drink: drink)
-//            }
-//            .navigationDestination(for: Dessert.self) { dessert in
-//                DessertDetailView(dessert: dessert)
-//            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     CartButton(count: cartManager.items.count, didTap: {
@@ -41,7 +35,6 @@ struct ContentView: View {
             }
         }
         .environmentObject(cartManager)
-        .environmentObject(routerManager)
     }
 }
 

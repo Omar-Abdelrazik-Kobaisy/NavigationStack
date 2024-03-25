@@ -28,6 +28,33 @@ struct DessertDetailView: View {
                 LabeledContent("Cold?", value: dessert.isCold ? "✅" : "❌")
             }
             
+            if let ingredients = dessert.ingredients,
+               let allergies = dessert.allergies,
+               ingredients.isEmpty == false ,
+               allergies.isEmpty == false{
+                Section {
+                    let ingredientsCount = ingredients.count
+                    let allergiesCount = allergies.count
+                    NavigationLink(value: Route.ingredients(items: ingredients)) {
+                        Text("x\(ingredientsCount) ingredients")
+                    }
+                    NavigationLink(value: Route.allergies(items: allergies)) {
+                        Text("x\(allergiesCount) allergies")
+                    }
+
+                }
+            }
+            
+            if let locations = dessert.locations,
+               locations.isEmpty == false{
+                let locationCount = locations.count
+                Section {
+                    NavigationLink(value: Route.location(locations: locations)) {
+                        Text("x\(locationCount) locations")
+                    }
+//                    LabeledContent("x\(locationCount) locations", value: "")
+                }
+            }
             Section {
                 Button {
                     cartManager.add(dessert)

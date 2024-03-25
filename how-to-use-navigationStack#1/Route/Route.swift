@@ -7,10 +7,16 @@
 
 import Foundation
 import SwiftUI
-enum Route: View, Hashable{
+enum Route{
     case menuItem(item: any MenuItem)
     case cart
-    
+    case ingredients(items: [Ingredient])
+    case allergies(items: [Allergie])
+    case location(locations: [Location])
+    case mapLocation(location: Location)
+    case promo
+}
+extension Route: Hashable{
     func hash(into hasher: inout Hasher) {
         hasher.combine(self.hashValue)
     }
@@ -21,11 +27,22 @@ enum Route: View, Hashable{
             return lhsItem.id == rhsItem.id
         case (.cart, .cart):
             return true
+        case (.ingredients(let lhsItems), .ingredients(let rhsItems)):
+            return lhsItems == rhsItems
+        case (.allergies(let lhsItems), .allergies(let rhsItems)):
+            return lhsItems == rhsItems
+        case (.location(let lhsItems), .location(let rhsItems)):
+            return lhsItems == rhsItems
+        case (.mapLocation(let lhsItem), .mapLocation(let rhsItem)):
+            return lhsItem.id == rhsItem.id
+        case (.promo, .promo):
+            return true
         default:
             return false
         }
     }
-    
+}
+extension Route: View{
     var body: some View{
         switch self{
         case .menuItem(let item):
@@ -41,6 +58,16 @@ enum Route: View, Hashable{
             }
         case .cart:
             CartView()
+        case .ingredients(let items):
+            IngredientsDetailView(ingredients: items)
+        case .allergies(let items):
+            AllergiesDetailView(allergies: items)
+        case .location(let items):
+            LocationsDetailView(locations: items)
+        case .mapLocation(let item):
+            MapView(location: item)
+        case .promo:
+            PromoView()
         }
     }
 }

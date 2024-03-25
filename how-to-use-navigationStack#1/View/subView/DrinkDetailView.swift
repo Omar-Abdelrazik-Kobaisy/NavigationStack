@@ -27,6 +27,33 @@ struct DrinkDetailView: View {
                 }
                 LabeledContent("Fizzy?", value: drink.isFizzy ? "✅" : "❌")
             }
+            if let ingredients = drink.ingredients,
+               let allergies = drink.allergies,
+               ingredients.isEmpty == false ,
+               allergies.isEmpty == false{
+                Section {
+                    let ingredientsCount = ingredients.count
+                    let allergiesCount = allergies.count
+                    NavigationLink(value: Route.ingredients(items: ingredients)) {
+                        Text("x\(ingredientsCount) ingredients")
+                    }
+                    NavigationLink(value: Route.allergies(items: allergies)) {
+                        Text("x\(allergiesCount) allergies")
+                    }
+
+                }
+            }
+            
+            if let locations = drink.locations,
+               locations.isEmpty == false{
+                let locationCount = locations.count
+                Section {
+                    NavigationLink(value: Route.location(locations: locations)) {
+                        Text("x\(locationCount) locations")
+                    }
+//                    LabeledContent("x\(locationCount) locations", value: "")
+                }
+            }
             
             Section {
                 Button {
